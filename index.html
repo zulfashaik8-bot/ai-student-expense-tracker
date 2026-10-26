@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Track student expenses, manage budgets, and get smart saving tips.">
+  <title>AI Student Expense Tracker</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+<header class="topbar">
+  <a class="brand" href="#"><span class="brand-icon">₹</span><span>SpendSmart<small>STUDENT EDITION</small></span></a>
+  <button id="themeToggle" class="icon-button" aria-label="Toggle dark mode">☾</button>
+</header>
+<main class="container">
+  <section class="welcome">
+    <div><p class="eyebrow">YOUR MONEY, MADE SIMPLE</p><h1>Student Expense Tracker <span>✦</span></h1><p class="subtitle">Understand your spending. Make smarter choices.</p></div>
+    <div class="month-picker"><label for="monthFilter">Month</label><input type="month" id="monthFilter"></div>
+  </section>
+  <section class="summary-grid">
+    <article class="summary-card balance-card"><div class="card-label">Monthly Budget <span>◷</span></div><div class="amount" id="budgetDisplay">₹5,000</div><button class="text-button" id="editBudgetBtn">Edit budget ↗</button></article>
+    <article class="summary-card"><div class="card-label">Total Spent <span>↗</span></div><div class="amount" id="totalSpent">₹0</div><p class="card-note" id="budgetStatus">Start tracking expenses</p></article>
+    <article class="summary-card"><div class="card-label">Remaining <span>◈</span></div><div class="amount" id="remaining">₹5,000</div><p class="card-note">Budget left this month</p></article>
+    <article class="summary-card"><div class="card-label">Transactions <span>▤</span></div><div class="amount" id="transactionCount">0</div><p class="card-note">Recorded this month</p></article>
+  </section>
+  <section class="content-grid">
+    <article class="panel">
+      <div class="panel-heading"><div><p class="eyebrow">KEEP A RECORD</p><h2>Add an expense</h2></div><span class="heading-icon">＋</span></div>
+      <form id="expenseForm">
+        <label for="expenseTitle">Expense name</label><input id="expenseTitle" type="text" placeholder="e.g. College lunch" maxlength="70" required>
+        <div class="form-row"><div><label for="expenseAmount">Amount (₹)</label><input id="expenseAmount" type="number" min="1" step="0.01" placeholder="150" required></div><div><label for="expenseCategory">Category</label><select id="expenseCategory"><option>Food</option><option>Transport</option><option>Education</option><option>Shopping</option><option>Entertainment</option><option>Bills</option><option>Other</option></select></div></div>
+        <div class="form-row"><div><label for="expenseDate">Date</label><input id="expenseDate" type="date" required></div><div><label for="expensePayment">Payment</label><select id="expensePayment"><option>UPI</option><option>Cash</option><option>Card</option><option>Other</option></select></div></div>
+        <button class="primary-button" type="submit">＋ Add expense</button>
+      </form>
+    </article>
+    <article class="panel chart-panel">
+      <div class="panel-heading"><div><p class="eyebrow">AT A GLANCE</p><h2>Spending breakdown</h2></div></div>
+      <div class="chart-wrap"><canvas id="expenseChart" aria-label="Spending breakdown chart"></canvas><p id="chartEmpty" class="empty-chart">Add expenses to see your chart.</p></div>
+    </article>
+  </section>
+  <section class="panel insights-panel">
+    <div class="panel-heading"><div><p class="eyebrow">SMART MONEY HABITS</p><h2>AI-style saving insights <span class="sparkle">✦</span></h2></div><span class="ai-pill">SMART TIPS</span></div>
+    <p class="insight-intro">Personalized rule-based suggestions based on the expenses you record. These are generated locally and do not require an AI service.</p>
+    <div id="insights" class="insights-list"><div class="insight"><span>💡</span><p>Add a few expenses to receive useful saving tips.</p></div></div>
+  </section>
+  <section class="panel transactions-panel">
+    <div class="panel-heading transaction-heading"><div><p class="eyebrow">YOUR ACTIVITY</p><h2>Recent expenses</h2></div><div class="search-wrap"><span>⌕</span><input id="searchInput" type="search" placeholder="Search expenses..." aria-label="Search expenses"></div></div>
+    <div class="table-wrap"><table><thead><tr><th>Expense</th><th>Category</th><th>Date</th><th>Payment</th><th class="align-right">Amount</th><th></th></tr></thead><tbody id="expenseTable"></tbody></table><div id="emptyState" class="empty-state"><span>▤</span><h3>No expenses yet</h3><p>Add your first expense using the form above.</p></div></div>
+  </section>
+  <footer>Made for students, one smart choice at a time. <span>SpendSmart © <span id="year"></span></span></footer>
+</main>
+<div id="toast" class="toast" role="status" aria-live="polite"></div>
+<script src="script.js"></script>
+</body>
+</html>
